@@ -26,6 +26,7 @@ public class MovimientoBuilder {
                 .saldo(model.getSaldo())
                 .observacion(model.getObservacion())
                 .numeroCuenta(model.getCuenta().getNumero())
+                .cuenta(cuentaBuilder.builder(model.getCuenta()))
                 .build();
     }
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("${server.context-path}/cliente")
 @AllArgsConstructor
@@ -42,12 +43,9 @@ public class ClienteController {
                 .build();
     }
 
-    @GetMapping("findById")
-    public ModelResponse getData(@RequestParam Long id) {
-        return ModelResponse.builder()
-                .statusCode(HttpStatus.OK)
-                .body(clienteService.getFindById(id))
-                .build();
+    @GetMapping("micro/findById")
+    public ClienteDto getData(@RequestParam Long id) {
+        return clienteService.getFindById(id);
     }
 
     @GetMapping("getAllPageable")

@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          # SERVICIO DE CLIENTES - PERSONAS
+          - id: service-persona
+            uri: lb://service-persona
+            predicates:
+              - Path=/api/service-persona/**
+          # SERVICIO DE MOVIMIENTO - CUENTA
+          - id: service-cuenta
+            uri: lb://service-cuenta
+            predicates:
+              - Path=/api/service-cuenta/**

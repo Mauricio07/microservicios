@@ -25,6 +25,7 @@ public class MovimientoService {
     private final IMovimientoRepository iMovimientoRepository;
     private final MovimientoBuilder movimientoBuilder;
     private final CuentaBuilder cuentaBuilder;
+    private final ClienteService clienteService;
 
     @Transactional
     public MovimientoDto save(MovimientoDto model) {
@@ -57,7 +58,11 @@ public class MovimientoService {
         }
         return iMovimientoRepository
                 .findAllByFechaBetweenOrderByFechaDesc(fechaInicio, fechaFinal, pageRequest)
-                .map(movimientoBuilder::builder);
+                .map(movimiento -> {
+                    MovimientoDto dto = movimientoBuilder.builder(movimiento);
+                    dto.getCuenta().setCliente(clienteService.getClienteById(movimiento.getCuenta().getClienteId()));
+                    return dto;
+                });
     }
 
     private void validarSaldo(String numeroCuenta) {
