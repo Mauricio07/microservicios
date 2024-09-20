@@ -8,6 +8,7 @@ public abstract class MensajesGlobales {
     public static final String MSG_ERROR_TIPO_REQUERIDO = "El tipo es requerido";
     public static final String MSG_ERROR_FECHA_REQUERIDA = "El fecha es requerida";
     public static final String MSG_ERROR_SALDO_INVALIDO = "El saldo no es disponible";
+    public static final String MSG_ERROR_FECHA_INVALIDA = "El fecha final no es válida";
 
     private MensajesGlobales() {
     }

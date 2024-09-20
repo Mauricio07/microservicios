@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/movimientos")
 @AllArgsConstructor
@@ -51,6 +53,8 @@ public class MovimientoController {
 
     @GetMapping("getAllPageable")
     public ModelResponse getAllPageable(
+            @RequestParam LocalDate fechaInicio,
+            @RequestParam LocalDate fechaFinal,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "id") String field,
@@ -58,7 +62,7 @@ public class MovimientoController {
     ) {
         return ModelResponse.builder()
                 .statusCode(HttpStatus.OK)
-                .body(movimientoService.getAll(PageRequest
+                .body(movimientoService.getAll(fechaInicio, fechaFinal, PageRequest
                         .of(page, size, orderBy == 1 ? Sort.Direction.ASC : Sort.Direction.DESC, field)))
                 .build();
 

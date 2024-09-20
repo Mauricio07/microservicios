@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Service
 @AllArgsConstructor
@@ -45,9 +46,12 @@ public class MovimientoService {
         return movimientoBuilder.builder(get(id));
     }
 
-    public Page<MovimientoDto> getAll(PageRequest pageRequest) {
+    public Page<MovimientoDto> getAll(LocalDate fechaInicio, LocalDate fechaFinal, PageRequest pageRequest) {
+        if (fechaFinal.isBefore(fechaInicio)) {
+            throw new MovimientoException(MensajesGlobales.MSG_ERROR_FECHA_INVALIDA);
+        }
         return iMovimientoRepository
-                .findAll(pageRequest)
+                .findAllByFechaBetweenOrderByFechaAsc(fechaInicio, fechaFinal, pageRequest)
                 .map(movimientoBuilder::builder);
     }
 
