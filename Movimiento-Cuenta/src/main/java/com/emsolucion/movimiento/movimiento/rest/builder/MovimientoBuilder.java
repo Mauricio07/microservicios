@@ -3,6 +3,7 @@ package com.emsolucion.movimiento.movimiento.rest.builder;
 import com.emsolucion.movimiento.movimiento.database.models.Movimiento;
 import com.emsolucion.movimiento.movimiento.rest.dto.CuentaDto;
 import com.emsolucion.movimiento.movimiento.rest.dto.MovimientoDto;
+import com.emsolucion.movimiento.movimiento.services.messages.MensajesGlobales;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ public class MovimientoBuilder {
                 .tipo(model.getTipo())
                 .valor(model.getValor())
                 .saldo(model.getSaldo())
+                .observacion(model.getObservacion())
                 .numeroCuenta(model.getCuenta().getNumero())
                 .build();
     }
@@ -34,6 +36,7 @@ public class MovimientoBuilder {
                 .tipo(model.getTipo())
                 .valor(model.getValor())
                 .saldo(model.getSaldo())
+                .observacion(model.getObservacion())
                 .cuenta(cuentaBuilder.builder(model.getCuenta()))
                 .build();
     }
@@ -46,6 +49,7 @@ public class MovimientoBuilder {
                 .tipo(model.getTipo())
                 .valor(model.getValor())
                 .saldo(model.getSaldo())
+                .observacion(model.getObservacion())
                 .build();
     }
 
@@ -55,6 +59,7 @@ public class MovimientoBuilder {
                 .tipo(model.getTipo())
                 .valor(model.getSaldoInicial())
                 .saldo(model.getSaldoInicial())
+                .observacion(MensajesGlobales.MSG_INFO_APERTURA)
                 .cuenta(cuentaBuilder.builder(cuenta))
                 .build();
     }

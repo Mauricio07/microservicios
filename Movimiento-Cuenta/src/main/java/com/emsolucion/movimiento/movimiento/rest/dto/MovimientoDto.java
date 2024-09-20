@@ -35,4 +35,6 @@ public class MovimientoDto implements Serializable {
     private String numeroCuenta;
 
     private CuentaDto cuenta;
+
+    private String observacion;
 }

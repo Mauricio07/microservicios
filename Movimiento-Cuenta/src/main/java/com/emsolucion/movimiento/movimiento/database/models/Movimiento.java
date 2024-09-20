@@ -43,6 +43,8 @@ public class Movimiento implements Serializable {
     @Column(nullable = false)
     private BigDecimal saldo;
 
+    private String observacion;
+
     @ManyToOne
     @JoinColumn(name = "cuenta_id", nullable = false)
     private Cuenta cuenta;
