@@ -43,7 +43,7 @@ public class MovimientoController {
                 .build();
     }
 
-    @GetMapping("findByToken")
+    @GetMapping("findById")
     public ModelResponse getData(@RequestParam Long id) {
         return ModelResponse.builder()
                 .statusCode(HttpStatus.OK)
@@ -51,7 +51,7 @@ public class MovimientoController {
                 .build();
     }
 
-    @GetMapping("getAllPageable")
+    @GetMapping("reportes")
     public ModelResponse getAllPageable(
             @RequestParam LocalDate fechaInicio,
             @RequestParam LocalDate fechaFinal,
