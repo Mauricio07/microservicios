@@ -12,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 @AllArgsConstructor
 public class MovimientoService {
@@ -22,12 +24,14 @@ public class MovimientoService {
 
     @Transactional
     public MovimientoDto save(MovimientoDto model) {
+        validarSaldo(model.getNumeroCuenta());
         return movimientoBuilder.builder(iMovimientoRepository
                 .save(movimientoBuilder.builder(model)));
     }
 
     @Transactional
     public MovimientoDto update(Long id, MovimientoDto model) {
+        validarSaldo(model.getNumeroCuenta());
         return movimientoBuilder.builder(iMovimientoRepository
                 .save(movimientoBuilder.builderUpdate(get(id), model)));
     }
@@ -45,6 +49,13 @@ public class MovimientoService {
         return iMovimientoRepository
                 .findAll(pageRequest)
                 .map(movimientoBuilder::builder);
+    }
+
+    private void validarSaldo(String numeroCuenta) {
+        Movimiento movimiento = iMovimientoRepository.findFirstByCuentaNumeroOrderByIdDesc(numeroCuenta);
+        if (movimiento.getSaldo().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new MovimientoException(MensajesGlobales.MSG_ERROR_SALDO_INVALIDO);
+        }
     }
 
     @Transactional

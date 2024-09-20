@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IMovimientoRepository extends JpaRepository<Movimiento, Long> {
+
+    Movimiento findFirstByCuentaNumeroOrderByIdDesc(String cuenta);
+
 }
