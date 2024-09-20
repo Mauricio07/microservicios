@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("${server.context-path}/cliente")
 @AllArgsConstructor
 public class ClienteController {
 

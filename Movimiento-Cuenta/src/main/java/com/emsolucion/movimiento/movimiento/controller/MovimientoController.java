@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/movimientos")
+@RequestMapping("${server.context-path}/movimientos")
 @AllArgsConstructor
 public class MovimientoController {
 

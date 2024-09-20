@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/persona")
+@RequestMapping("${server.context-path}/persona")
 @AllArgsConstructor
 public class PersonaController {
 
@@ -42,7 +42,7 @@ public class PersonaController {
                 .build();
     }
 
-    @GetMapping("findByToken")
+    @GetMapping("findById")
     public ModelResponse getData(@RequestParam Long id) {
         return ModelResponse.builder()
                 .statusCode(HttpStatus.OK)
