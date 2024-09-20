@@ -1,0 +1,36 @@
+# CONFIGURACIONES APLICACION
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          # SERVICIO DE CLIENTES - PERSONAS
+          - id: service-persona
+            uri: lb://service-persona
+            predicates:
+              - Path=/api/service-persona/**
+          # SERVICIO DE MOVIMIENTO - CUENTA
+          - id: service-cuenta
+            uri: lb://service-cuenta
+            predicates:
+              - Path=/api/service-cuenta/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+
+# CONFIGURACIONES EUREKA
+server:
+  port: 8085
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: "http://${spring.eureka.url}/eureka"
+  instance:
+    instance-id: "${spring.application.name}::${random.uuid}"
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 60
