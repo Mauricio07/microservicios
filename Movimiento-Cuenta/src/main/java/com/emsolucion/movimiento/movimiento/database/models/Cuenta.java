@@ -46,7 +46,7 @@ public class Cuenta implements Serializable {
 
     @PrePersist
     public void prePersist() {
-        if (Objects.isNull(estado)) estado = StatusEnum.ENABLED;
+        if (Objects.isNull(estado)) estado = StatusEnum.TRUE;
     }
 
 }

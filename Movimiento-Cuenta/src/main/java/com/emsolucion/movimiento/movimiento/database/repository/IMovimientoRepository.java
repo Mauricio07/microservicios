@@ -13,5 +13,5 @@ public interface IMovimientoRepository extends JpaRepository<Movimiento, Long> {
 
     Movimiento findFirstByCuentaNumeroOrderByIdDesc(String cuenta);
 
-    Page<Movimiento> findAllByFechaBetweenOrderByFechaAsc(LocalDate fechaInicio, LocalDate fechaFinal, PageRequest pageRequest);
+    Page<Movimiento> findAllByFechaBetweenOrderByFechaDesc(LocalDate fechaInicio, LocalDate fechaFinal, PageRequest pageRequest);
 }

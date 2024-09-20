@@ -56,7 +56,7 @@ public class MovimientoService {
             throw new MovimientoException(MensajesGlobales.MSG_ERROR_FECHA_INVALIDA);
         }
         return iMovimientoRepository
-                .findAllByFechaBetweenOrderByFechaAsc(fechaInicio, fechaFinal, pageRequest)
+                .findAllByFechaBetweenOrderByFechaDesc(fechaInicio, fechaFinal, pageRequest)
                 .map(movimientoBuilder::builder);
     }
 
