@@ -12,6 +12,7 @@ public abstract class MensajesGlobales {
     public static final String ERR_MSG_VALIDACIONES = "Existen los siguientes errores en la validación";
     public static final String MSG_ERROR_CUENTA_INVALIDA = "El número de cuenta es inválida";
     public static final String MSG_INFO_APERTURA = "Apertura de cuenta";
+    public static final String MSG_ERROR_CLIENTE_IDENTIFICADOR_REQUERIDO = "El cliente id es requerido";
 
     private MensajesGlobales() {
     }

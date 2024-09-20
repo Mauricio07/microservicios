@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          # SERVICIO DE CLIENTES - PERSONAS
+          - id: service-persona
+            uri: http://localhost:10010
+            predicates:
+              - Path=/api/service-persona/**
+          # SERVICIO DE MOVIMIENTO - CUENTA
+          - id: service-cuenta
+            uri: http://localhost:10011
+            predicates:
+              - Path=/api/service-cuenta/**
