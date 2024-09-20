@@ -1,6 +1,7 @@
 package com.emsolucion.persona.personal.rest.dto;
 
 import com.emsolucion.persona.personal.rest.enums.StatusEnum;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import java.io.Serializable;
 public class ClienteDto extends PersonaDto implements Serializable {
 
     private Long clienteId;
+    
     private String contrasenia;
     private StatusEnum estado;
 }

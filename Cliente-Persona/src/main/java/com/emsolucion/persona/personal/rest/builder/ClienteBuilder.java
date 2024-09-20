@@ -2,10 +2,19 @@ package com.emsolucion.persona.personal.rest.builder;
 
 import com.emsolucion.persona.personal.database.models.Cliente;
 import com.emsolucion.persona.personal.rest.dto.ClienteDto;
+import com.emsolucion.persona.personal.segurity.SecurityApplication;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 @Component
 public class ClienteBuilder {
+
+    private final SecurityApplication securityApplication;
+
+    public ClienteBuilder(SecurityApplication securityApplication) {
+        this.securityApplication = securityApplication;
+    }
 
     public ClienteDto builder(Cliente model) {
         return ClienteDto.builder()
@@ -16,7 +25,6 @@ public class ClienteBuilder {
                 .telefono(model.getTelefono())
                 .edad(model.getEdad())
                 .genero(model.getGenero())
-                .contrasenia(model.getContrasenia())
                 .estado(model.getEstado())
                 .build();
     }
@@ -30,7 +38,7 @@ public class ClienteBuilder {
                 .telefono(model.getTelefono())
                 .edad(model.getEdad())
                 .genero(model.getGenero())
-                .contrasenia(model.getContrasenia())
+                .contrasenia(securityApplication.passwordEncoder().encode(model.getContrasenia()))
                 .estado(model.getEstado())
                 .build();
     }
@@ -45,7 +53,10 @@ public class ClienteBuilder {
                 .telefono(model.getTelefono())
                 .edad(model.getEdad())
                 .genero(model.getGenero())
-                .contrasenia(model.getContrasenia())
+                .contrasenia(Objects.isNull(model.getContrasenia())
+                        ? cliente.getContrasenia()
+                        : securityApplication.passwordEncoder().encode(model.getContrasenia())
+                )
                 .estado(model.getEstado())
                 .build();
     }
