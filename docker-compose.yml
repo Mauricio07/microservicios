@@ -1,0 +1,85 @@
+
+services:
+  database-micro:
+    container_name: database-micro
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: aplserver
+      POSTGRES_PASSWORD: Or0zoPie
+      TZ: America/Guayaquil
+    ports:
+      - "50220:5432"
+    networks:
+      - red-micro
+    volumes:
+      - ./db:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+
+  service-discovery:
+    container_name: service-discovery
+    build: 
+      context: ./Discovery
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    ports:
+      - "8761:8761"
+    networks:
+      - red-micro 
+
+  service-gateway:
+    container_name: service-gateway
+    build: 
+      context: ./Gateway
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_EUREKA_URL=service-discovery:8761
+    restart: unless-stopped
+    ports:
+      - "8085:8085"
+    depends_on:
+      - service-discovery
+    networks:
+      - red-micro 
+
+  service-persona:
+    container_name: service-persona
+    build: 
+      context: ./Cliente-Persona
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_EUREKA_URL=service-discovery:8761
+      - DATABASE_URL=database-micro:5432
+      - DATABASE_USER=aplserver
+      - DATABASE_PASS=Or0zoPie
+    restart: unless-stopped
+    depends_on:
+      - service-gateway
+    networks:
+      - red-micro 
+
+  service-cuenta:
+    container_name: service-cuenta
+    build: 
+      context: ./Movimiento-Cuenta
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_EUREKA_URL=service-discovery:8761
+      - DATABASE_URL=database-micro:5432
+      - DATABASE_USER=aplserver
+      - DATABASE_PASS=Or0zoPie      
+    restart: unless-stopped
+    depends_on:
+      - service-gateway
+    networks:
+      - red-micro
+
+
+networks:
+  red-micro:
+    driver: bridge

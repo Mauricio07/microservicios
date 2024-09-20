@@ -1,0 +1,469 @@
+{
+	"info": {
+		"_postman_id": "2dd6f1a5-2f53-4fa0-b452-3957e7432141",
+		"name": "Consejo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3812482",
+		"_collection_link": "https://emsolucion.postman.co/workspace/EmSolucion-Proyectos~349ee14e-b122-4f22-a421-da93dbf3ef85/collection/3812482-2dd6f1a5-2f53-4fa0-b452-3957e7432141?action=share&source=collection_link&creator=3812482"
+	},
+	"item": [
+		{
+			"name": "Micro Clientes",
+			"item": [
+				{
+					"name": "Clientes",
+					"item": [
+						{
+							"name": "Nuevo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contrasenia\": \"123456\",\n    \"clienteId\": \"1\",\n    \"nombre\": \"Test\",\n    \"identificacion\": \"1234589\",\n    \"direccion\": \"Ninguna\",\n    \"telefono\": \"09899999\",\n    \"genero\": \"HOMBRE\",\n    \"edad\": \"22\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-persona/cliente/save",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-persona",
+										"cliente",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contrasenia\": \"12345\",\n    \"clienteId\": \"\",\n    \"nombre\": \"Test\",\n    \"identificacion\": \"123456\",\n    \"direccion\": \"Ninguna\",\n    \"telefono\": \"09899999\",\n    \"genero\": \"HOMBRE\",\n    \"edad\": \"22\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-persona/cliente/getAllPageable",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-persona",
+										"cliente",
+										"getAllPageable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contrasenia\": \"12345\",\n    \"clienteId\": \"\",\n    \"nombre\": \"Test\",\n    \"identificacion\": \"123456\",\n    \"direccion\": \"Ninguna\",\n    \"telefono\": \"09899999\",\n    \"genero\": \"HOMBRE\",\n    \"edad\": \"22\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-persona/cliente/micro/findById?id=11",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-persona",
+										"cliente",
+										"micro",
+										"findById"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contrasenia\": \"12345\",\n    \"clienteId\": \"\",\n    \"nombre\": \"Test\",\n    \"identificacion\": \"123456\",\n    \"direccion\": \"Ninguna\",\n    \"telefono\": \"09899999\",\n    \"genero\": \"HOMBRE\",\n    \"edad\": \"22\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-persona/cliente/delete?id=11",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-persona",
+										"cliente",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"Test\",\n    \"identificacion\": \"1234589\",\n    \"direccion\": \"Carcelen\",\n    \"telefono\": \"09899999\",\n    \"genero\": \"HOMBRE\",\n    \"edad\": 22,\n    \"clienteId\": 1,\n    \"estado\": \"TRUE\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-persona/cliente/update?id=1",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-persona",
+										"cliente",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Persona",
+					"item": [
+						{
+							"name": "Nuevo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"Test\",\n    \"identificacion\": \"123457\",\n    \"direccion\": \"Ninguna\",\n    \"telefono\": \"09899999\",\n    \"genero\": \"HOMBRE\",\n    \"edad\": \"22\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-persona/persona/save",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-persona",
+										"persona",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualiza",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\n        \"id\": 2,\n        \"nombre\": \"Test Mario\",\n        \"identificacion\": \"123457\",\n        \"direccion\": \"Ninguna\",\n        \"telefono\": \"09899999\",\n        \"genero\": \"HOMBRE\",\n        \"edad\": 22\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-persona/persona/update?id=2",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-persona",
+										"persona",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contrasenia\": \"12345\",\n    \"clienteId\": \"\",\n    \"nombre\": \"Test\",\n    \"identificacion\": \"123456\",\n    \"direccion\": \"Ninguna\",\n    \"telefono\": \"09899999\",\n    \"genero\": \"HOMBRE\",\n    \"edad\": \"22\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-persona/persona/getAllPageable",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-persona",
+										"persona",
+										"getAllPageable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contrasenia\": \"12345\",\n    \"clienteId\": \"\",\n    \"nombre\": \"Test\",\n    \"identificacion\": \"123456\",\n    \"direccion\": \"Ninguna\",\n    \"telefono\": \"09899999\",\n    \"genero\": \"HOMBRE\",\n    \"edad\": \"22\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-persona/persona/findById?id=2",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-persona",
+										"persona",
+										"findById"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Micro Movimiento",
+			"item": [
+				{
+					"name": "Cuenta",
+					"item": [
+						{
+							"name": "Save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"numero\": \"123450\",\n    \"tipo\": \"AHORROS\",\n    \"saldoInicial\": \"100\",\n    \"clienteId\":1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-cuenta/cuentas/save",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-cuenta",
+										"cuentas",
+										"save"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetALL",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url-dev}}/service-cuenta/cuentas/getAllPageable",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-cuenta",
+										"cuentas",
+										"getAllPageable"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Movimientos",
+					"item": [
+						{
+							"name": "Reportes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url-dev}}/service-cuenta/movimientos/reportes?fechaInicio=2024-09-19&fechaFinal=2024-09-20",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-cuenta",
+										"movimientos",
+										"reportes"
+									],
+									"query": [
+										{
+											"key": "fechaInicio",
+											"value": "2024-09-19"
+										},
+										{
+											"key": "fechaFinal",
+											"value": "2024-09-20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"fecha\":\"2024-09-20\",\n\"tipo\":\"AHORROS\",\n\"valor\":\"30\",\n\"numeroCuenta\":\"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-dev}}/service-cuenta/movimientos/save",
+									"host": [
+										"{{url-dev}}"
+									],
+									"path": [
+										"service-cuenta",
+										"movimientos",
+										"save"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url-dev",
+			"value": "http://localhost:8085/api",
+			"type": "string"
+		}
+	]
+}
