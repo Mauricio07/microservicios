@@ -44,6 +44,9 @@ public class Cuenta implements Serializable {
     @Enumerated(EnumType.STRING)
     private StatusEnum estado;
 
+    @Column(nullable = false)
+    private Long clienteId;
+
     @PrePersist
     public void prePersist() {
         if (Objects.isNull(estado)) estado = StatusEnum.TRUE;

@@ -12,6 +12,7 @@ public class CuentaBuilder {
                 .id(model.getId())
                 .numero(model.getNumero())
                 .tipo(model.getTipo())
+                .clienteId(model.getClienteId())
                 .saldoInicial(model.getSaldoInicial())
                 .estado(model.getEstado())
                 .build();
@@ -22,6 +23,7 @@ public class CuentaBuilder {
                 .id(model.getId())
                 .numero(model.getNumero())
                 .tipo(model.getTipo())
+                .clienteId(model.getClienteId())
                 .saldoInicial(model.getSaldoInicial())
                 .estado(model.getEstado())
                 .build();
@@ -32,6 +34,7 @@ public class CuentaBuilder {
                 .id(cuenta.getId())
                 .numero(model.getNumero())
                 .tipo(model.getTipo())
+                .clienteId(model.getClienteId())
                 .saldoInicial(model.getSaldoInicial())
                 .estado(model.getEstado())
                 .build();

@@ -29,4 +29,6 @@ public class CuentaDto implements Serializable {
     @NotNull(message = MensajesGlobales.MSG_ERROR_SALDO_REQUERIDO)
     private BigDecimal saldoInicial;
     private StatusEnum estado;
+
+    private Long clienteId;
 }
