@@ -2,7 +2,9 @@ package com.emsolucion.movimiento.movimiento.services.operators;
 
 import com.emsolucion.movimiento.movimiento.database.models.Movimiento;
 import com.emsolucion.movimiento.movimiento.database.repository.IMovimientoRepository;
+import com.emsolucion.movimiento.movimiento.rest.builder.CuentaBuilder;
 import com.emsolucion.movimiento.movimiento.rest.builder.MovimientoBuilder;
+import com.emsolucion.movimiento.movimiento.rest.dto.CuentaDto;
 import com.emsolucion.movimiento.movimiento.rest.dto.MovimientoDto;
 import com.emsolucion.movimiento.movimiento.services.exceptions.MovimientoException;
 import com.emsolucion.movimiento.movimiento.services.messages.MensajesGlobales;
@@ -22,10 +24,12 @@ public class MovimientoService {
 
     private final IMovimientoRepository iMovimientoRepository;
     private final MovimientoBuilder movimientoBuilder;
+    private final CuentaBuilder cuentaBuilder;
 
     @Transactional
     public MovimientoDto save(MovimientoDto model) {
         validarSaldo(model.getNumeroCuenta());
+        calcularSaldo(model);
         return movimientoBuilder.builder(iMovimientoRepository
                 .save(movimientoBuilder.builder(model)));
     }
@@ -33,6 +37,7 @@ public class MovimientoService {
     @Transactional
     public MovimientoDto update(Long id, MovimientoDto model) {
         validarSaldo(model.getNumeroCuenta());
+        calcularSaldo(model);
         return movimientoBuilder.builder(iMovimientoRepository
                 .save(movimientoBuilder.builderUpdate(get(id), model)));
     }
@@ -62,9 +67,20 @@ public class MovimientoService {
         }
     }
 
+    private void calcularSaldo(MovimientoDto model) {
+        Movimiento movimiento = iMovimientoRepository.findFirstByCuentaNumeroOrderByIdDesc(model.getNumeroCuenta());
+        model.setSaldo(movimiento.getSaldo().add(model.getValor()));
+        model.setCuenta(cuentaBuilder.builder(movimiento.getCuenta()));
+    }
+
     @Transactional
     public void delete(Long id) {
         iMovimientoRepository.delete(get(id));
     }
 
+    @Transactional
+    public CuentaDto saveCuenta(CuentaDto cuenta, CuentaDto model) {
+        Movimiento movimiento = iMovimientoRepository.save(movimientoBuilder.builderCuenta(cuenta, model));
+        return cuentaBuilder.builder(movimiento.getCuenta());
+    }
 }

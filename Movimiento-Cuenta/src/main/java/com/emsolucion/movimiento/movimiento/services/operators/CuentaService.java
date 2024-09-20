@@ -19,11 +19,12 @@ public class CuentaService {
 
     private final ICuentaRepository iCuentaRepository;
     private final CuentaBuilder cuentaBuilder;
+    private final MovimientoService movimientoService;
 
     @Transactional
     public CuentaDto save(CuentaDto model) {
-        return cuentaBuilder.builder(iCuentaRepository
-                .save(cuentaBuilder.builder(model)));
+        CuentaDto cuenta = cuentaBuilder.builder(iCuentaRepository.save(cuentaBuilder.builder(model)));
+        return movimientoService.saveCuenta(cuenta, model);
     }
 
     @Transactional

@@ -29,9 +29,10 @@ public class MovimientoDto implements Serializable {
     @NotNull(message = MensajesGlobales.MSG_ERROR_VALOR_REQUERIDO)
     private BigDecimal valor;
 
-    @NotNull(message = MensajesGlobales.MSG_ERROR_SALDO_REQUERIDO)
     private BigDecimal saldo;
 
     @NotNull(message = MensajesGlobales.MSG_ERROR_CUENTA_REQUERIDA)
     private String numeroCuenta;
+
+    private CuentaDto cuenta;
 }
